@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traffic Bot Ease File</title>
+  <script>
+    var log=console.log;
+    function op(elem){return document.querySelector(elem)}
+    function opp(elem){return document.querySelectorAll(elem)}
+  </script>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      position: relative;
+    }
+    .main{
+      flex-flow: row wrap;
+    }
+    .flex{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .box{
+      width: 250px;
+      height: 250px;
+      border: 3px solid #000;
+    }
+    .c{flex-flow: column;}
+    .btn
+  {
+    padding: 15px;
+    margin: 5px;border: 1px solid #0005;
+    border-radius: 20px;
+    width: 200px;
+    overflow: hidden;
+  }
+  </style>
+</head>
+<body class=" ">
+<div class="main flex">
+<div class="box c flex">
+
+<script>
+  document.querySelector('.main').style.display='none';
+  document.addEventListener('click',opx);
+  document.body.addEventListener('keypress',opx);
+  var n=0;
+  function opx() {
+    log('n')
+    if(n==3){
+      document.querySelector('.main').style.display='flex';
+
+      document.removeEventListener('click',opx);
+      document.body.removeEventListener('keypress',opx);
+    }
+    n++;
+  }
+</script>
+
+  <div class="btn" onclick='window.open("https://my.hyonix.com/servers.php","__blank","width=1080,height=1000,left=0%");copy("jatinmatta1001@gmail.com")'>Open HY Server with email</div>
+  <div class="btn copy">jatinmatta1001@gmail.com</div>
+  <div class="btn copy">$#QxZp5t8Z6.fN6</div>
+</div>
+
+<div class="box c flex">  
+  <div class="btn" onclick='window.open("https://dalga.dev/my-account","__blank","width=1080,height=1000,left=0%");copy("z2T*!y0eRQPS")'>Open Dalga With Passcode</div>
+  <div class="btn copy">jatin.matta</div>
+  <div class="btn copy">z2T*!y0eRQPS</div>
+</div>
+
+<div class="box c flex">  
+  <a  href="https://dalga.dev/?download_file=30090&order=wc_order_Zzrgzy6mQMILA&email=jatinmatta1001%40gmail.com&key=d010937b-7d7d-4748-b3b7-8c5c6613a461" class="btn">Download Main File</a>
+  <a style="display: block" target="__blank" href="https://dalga.dev/wp-content/uploads/2018/09/Awesome-Traffic-Bot-SE-Patch2.zip" class="btn">Download additional file</a>
+  <a style="display: block" target="__blank" download="AWBot.ps1" href="AWBot.ps1" class="btn" onclick="copy('309062155274764627390098427')">Download cmd</a>
+  <div class="btn copy">309062155274764627390098427</div>
+  <div class="btn copy" >C:\Program Files (x86)\DalgaDev\Awesome Traffic Bot</div>
+</div>
+
+<div class="box c flex">  
+  <div class="btn" onclick='window.open("https://dalga.dev/my-account/downloads/","__blank","width=1080,height=1000,left=0%");'>Dalga download page</div>
+  <!-- https://dalga.dev/?download_file=30090&order=wc_order_wEbK6Tev5XCTp&email=jatinmatta1001%40gmail.com&key=d010937b-7d7d-4748-b3b7-8c5c6613a461 -->
+  <!-- 309062155274764627390098427 -->
+  <div class="btn" onclick='window.open("https://dalga.dev/my-account/serial/","__blank","width=1080,height=1000,left=0%");'>Dalga Licence check</div>
+
+</div>
+
+</div>
+<script>
+  opp('.copy').forEach(val=>{
+    val.addEventListener("click",()=>{
+      log(copy(val.innerText));
+    })
+  })
+
+
+  function copy(txt) {
+  let elem=document.createElement("input");
+  document.body.insertAdjacentElement("beforeend",elem)
+  elem.value=txt;
+  elem.select();
+  elem.setSelectionRange(0, 99999); 
+  document.execCommand("copy");
+  navigator.clipboard.writeText(elem.value);
+  elem.remove();
+}
+</script>
+</body>
+</html>
