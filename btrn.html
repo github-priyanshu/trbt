@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    var log=console.log;
+    function op(elem){return document.querySelector(elem)}
+    function opp(elem){return document.querySelectorAll(elem)}
+  </script>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      position: relative;
+    }
+    .flex{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .c{flex-flow: column;}
+    input,button{
+      margin:  10px;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body class="flex c">
+  <input class="autoPaste" type="text" id="final" placeholder="final" style=" width: 400px;" oninput="autoIn(this)"> 
+  <br>
+  <input class="autoPaste" type="text" id="key" placeholder="key"> 
+  <br>
+  <input class="autoPaste" type="text" id="url" placeholder="url"> 
+  <br>
+  <input class="autoPaste" type="number" id="visitcount" placeholder="visitcount" > 
+  <br>
+  <input class="autoPaste" type="number" id="ctr" placeholder="ctr in bing" > 
+  <br>
+
+  <br>
+  ratio
+
+  <input type="number" id="desktop" placeholder="desktop" value="60">
+  <br>
+  <input type="number" id="tablet" placeholder="tablet" value="30">
+  <br>
+  <input type="number" id="mobile" placeholder="mobile" value="10">
+  <br>
+
+  <button onclick='changeInfo()'>copy</button>
+
+  <hr>
+  <a href="https://github.com/github-priyanshu/trbt/edit/main/data.json">edit data.json</a>
+  <a href="https://github.com/github-priyanshu/trbt/edit/main/index.html">edit index.html</a>
+  <script>
+
+    function autoIn(e) {
+        log(e.value.split('\t'))
+      var info=e.value.split('\t').filter((v)=>{return v.length?true:false;})
+      log(info)      
+      op("#key").value= info[0]
+      op("#url").value= info[1]
+      op("#visitcount").value= info[2].split('-')[1]-5;
+      info[3]=Number(info[3].replaceAll("%",'').trim().split('-')[1]) - 5;
+      op("#ctr").value= info[3];
+    }
+
+    opp(".autoPaste").forEach(val=>{
+    val.addEventListener("focus",()=>{
+      if(val.value==""){
+        navigator.clipboard.readText().then(ret=>{
+          val.value=ret || " ";
+          val.blur();
+        });
+      }
+    });
+  })
+
+    function changeInfo() {
+
+
+      data['$values'][0].TargetKeywod= op("#key").value
+      data['$values'][0].TargetWebsiteOrBusinessName= op("#url").value
+      data['$values'][0].Configuration.NumberOfVisitors= op("#visitcount").value
+      data['$values'][0].Configuration.TrafficMode.TrafficSettings.ClickChance = op("#ctr").value
+
+
+      downloadTextAsFile(JSON.stringify(data),"config.json");
+
+    }
+
+
+    var data;
+
+    fetch('data.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(dat => {
+        data = (dat);
+        log(data)
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+
+
+function downloadTextAsFile(text, fileName) {
+  // Create a Blob object from the text content
+  const blob = new Blob([text], { type: 'text/plain' });
+
+  // Create a temporary URL for the Blob object
+  const url = URL.createObjectURL(blob);
+
+  // Create a hidden anchor element for downloading the file
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = fileName;
+
+  // Programmatically trigger a click event on the anchor element
+  const event = new MouseEvent('click', {
+    view: window,
+    bubbles: true,
+    cancelable: true,
+  });
+  a.dispatchEvent(event);
+
+  // Cleanup: Revoke the Blob URL and remove the anchor element
+  URL.revokeObjectURL(url);
+  a.remove();
+}
+
+// Example usage:
+const textContent = 'This is some sample text content.';
+const fileName = 'sample.txt';
+// downloadTextAsFile(textContent, fileName);
+
+    
+  </script>
+</body>
+</html>
