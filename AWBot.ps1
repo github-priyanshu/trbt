@@ -4,6 +4,6 @@ $exeFilePath = "C:\Users\Administrator\Downloads\ATB-UPDATE-60-175-9nj.zip\ATB I
 Start-Process -FilePath $exeFilePath -Wait
 Write-Host "Installation complete."
 taskkill /IM chrome.exe /F
-rm C:\Users\Administrator\Downloads\bot.ps1
+rm C:\Users\Administrator\Downloads\AWBot.ps1
 
 Start-Process -FilePath "C:\Program Files (x86)\DalgaDev\Awesome Traffic Bot\Awesome Traffic Bot.exe"
