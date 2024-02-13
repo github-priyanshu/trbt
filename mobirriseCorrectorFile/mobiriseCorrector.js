@@ -1,5 +1,5 @@
 document.querySelectorAll('strong').forEach(val=>{if(val.innerText.includes('Verified Purchase')){console.log('s')
-  val.parentElement.insertAdjacentHTML('beforebegin',`<img src=''>`)
+  val.parentElement.insertAdjacentHTML('beforebegin',`<img src='https://trbt.netlify.app/mobirriseCorrectorFile/5stars.png' alt='5 star rating image' title='5 stars'>`)
 }})
 
 document.querySelector('section:nth-last-of-type(1)').remove();
