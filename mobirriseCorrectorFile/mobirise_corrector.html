@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobirise Correction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        textarea, input {
+            width: 100%;
+            margin-bottom: 30px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .input-pane {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .find-replace-inputs {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 20px;
+        }
+        .find-replace-inputs input{
+          width: 100px;
+        }
+
+        .find-replace-inputs input {
+            margin: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div style="display: flex; justify-content: space-between;">
+      <h2>Mobisire corrector</h2>
+<!-- 
+      <div>
+        <a target="_blank" href="https://app.netlify.com/teams/mahtosumithp144/sites"><button>Open Netlify Downloader</button></a>
+        <a target="_blank" href="https://app.netlify.com/drop"><button>Open Netlify Uploader</button></a>
+        <a target="_blank" href="https://hpanel.hostinger.com/websites"><button>Open Hostinger</button></a>
+        <a target="_blank" href="https://www.bing.com/webmasters"><button>Open WebMaster</button></a>
+        <a target="_blank" href="https://onedrive.live.com/edit?id=2AE8B923CD8CB67C!146&resid=2AE8B923CD8CB67C!146&ithint=file%2cxlsx&authkey=!ACj5WouSTfuyH9s&wdo=2&cid=2ae8b923cd8cb67c"><button>Open Subdomain Excel</button></a>
+      </div>
+ -->
+    </div>
+
+    <textarea style="height: 300px;" id="htmlInput" placeholder="Enter your HTML code here" oninput="setTimeout(()=>{this.scrollTo(0,0)},100)"></textarea>
+
+    <div class="input-pane">
+        <label for="keyword">Keyword:</label>
+        <input type="text" id="keyword" placeholder="Enter the keywords">
+<!-- 
+        <label for="replaceKeyword">Replace First Keyword:</label>
+        <input type="text" id="replaceKeyword" placeholder="Enter new keywords">
+
+        <label for="h1Content">New H1 Content:</label>
+        <input type="text" id="h1Content" placeholder="Enter new H1 content"> -->
+    </div>
+    <!-- 
+    <h3>Use the below boxes to replace old number with new numbers </h3>
+    <div class="find-replace-inputs">
+        <label for="find1">Find:</label>
+        <input type="text" id="find1" placeholder="Enter value to find">
+        <label for="replace1">Replace with:</label>
+        <input type="text" id="replace1" placeholder="Enter new value">
+    </div>
+    <div class="find-replace-inputs">
+        <label for="find2">Find:</label>
+        <input type="text" id="find2" placeholder="Enter value to find">
+        <label for="replace2">Replace with:</label>
+        <input type="text" id="replace2" placeholder="Enter new value">
+    </div>
+    <div class="find-replace-inputs">
+        <label for="find3">Find:</label>
+        <input type="text" id="find3" placeholder="Enter value to find">
+        <label for="replace3">Replace with:</label>
+        <input type="text" id="replace3" placeholder="Enter new value">
+    </div>
+    <div class="find-replace-inputs">
+        <label for="find4">Find:</label>
+        <input type="text" id="find4" placeholder="Enter value to find">
+        <label for="replace4">Replace with:</label>
+        <input type="text" id="replace4" placeholder="Enter new value">
+    </div>
+ -->
+    <!-- Repeat for find2, replace2, find3, replace3, find4, replace4, find5, replace5 -->
+
+    <button onclick="updateHTML()">Update HTML Code</button>
+
+    <script>
+        function updateHTML() {
+            var htmlCode = document.getElementById('htmlInput').value;
+            var keyword = document.getElementById('keyword').value;
+            
+            htmlCode = htmlCode.replace('</title>', `</title>\n<meta name="keywords" content="${keyword}">`);
+
+
+            htmlCode=domUpdater(htmlCode);
+
+            // Update textarea with the modified HTML code
+            document.getElementById('htmlInput').value = htmlCode;
+
+            // Copy the updated HTML code to clipboard
+            document.getElementById('htmlInput').select();
+            document.execCommand('copy');
+            
+            alert('HTML code updated and copied to clipboard!');
+        }
+function domUpdater(htmlCode) {
+// Create a new DOMParser
+var parser = new DOMParser();
+
+// Parse the HTML code
+var doc = parser.parseFromString(htmlCode, 'text/html');
+
+doc.querySelector("meta[name='generator']").remove();
+
+doc.querySelector("head").insertAdjacentHTML('beforeend',`<meta name="twitter:title" content="${doc.title}">`);
+
+doc.querySelectorAll('img').forEach(val=>{
+    val.setAttribute('title',val.getAttribute('alt'));
+})
+
+doc.querySelector('script:last-child').insertAdjacentHTML('beforebegin',`<script src='https://trbt.netlify.app/mobirriseCorrectorFile/mobiriseCorrector.js'>`);
+
+return '<!DOCTYPE html>\n'+doc.querySelector('html').outerHTML
+}
+    </script>
+
+
+</body>
+</html>
