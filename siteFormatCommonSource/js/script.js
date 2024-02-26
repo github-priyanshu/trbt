@@ -32,11 +32,6 @@ opp(".lineMargin").forEach(val=>{
 
 resetFormat();
 
-addStyle("files/css/style.css");
-addStyle("files/css/header.css");
-addStyle("files/css/section.css");
-
-
 function addStyle(url){
   document.head.insertAdjacentHTML("beforeend",`<link rel="stylesheet" href="${url}">`);
 }
