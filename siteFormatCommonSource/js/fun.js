@@ -18,7 +18,7 @@ if(editOn==0){
   document.addEventListener('keypress',tryEdition);
 }
 function tryEdition(e) {
-  if(e.key.toLowerCase=='x'){
+  if(e.key.toLowerCase()=='e'){
     editOn++;
   }
   if(editOn>2){
