@@ -93,7 +93,7 @@ body *{
 .orderNow{
   padding: 15px 25px;
   font-weight: bold;
-  font-size: 1em;
+  font-size: 1.3em;
   border: none;
   background: yellow;border-radius: 5px;color: #000;
 }
