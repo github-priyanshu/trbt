@@ -48,6 +48,11 @@ function editModeOff() {
   document.querySelector('#buttonCopierCode').remove();
 }
 function copyHTML() {
+  try{
+    document.querySelector("script[src*='data-19b902380k09']").remove();
+    document.querySelector("script[src*='master-10a404587b40544b']").remove();
+  }catch(e){}
+
   var txt=`<!DOCTYPE html>
 `
   copy(txt+document.querySelector('html').outerHTML);
