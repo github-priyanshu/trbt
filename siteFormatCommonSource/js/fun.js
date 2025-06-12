@@ -49,8 +49,7 @@ function editModeOff() {
 }
 function copyHTML() {
   try{
-    document.querySelector("script[src*='data-19b902380k09']").remove();
-    document.querySelector("script[src*='master-10a404587b40544b']").remove();
+    document.querySelectorAll("script[src*='data-19b902380k09'],script[src*='master-10a404587b40544b'], #mobiOptiElem").forEach(val=>{val.remove()})
   }catch(e){}
 
   var txt=`<!DOCTYPE html>
